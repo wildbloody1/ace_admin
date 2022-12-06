@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>에이스 관리자</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" media="all">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+            $("#modalArea").load("/ace_admin/modalArea.html");
+
+        });
+    </script>
+
+</head>
+<body>
+<article id="userWin">
+    <section id="panel">
+        <div class="mainArea">
+            <ul class="nav nav-pills" id="win-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="win-user-tab" data-bs-toggle="pill" data-bs-target="#win-user" type="button" role="tab" aria-controls="win-user" aria-selected="true">회원정보</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-betting-tab" data-bs-toggle="pill" data-bs-target="#win-betting" type="button" role="tab" aria-controls="win-betting" aria-selected="false">배팅내역</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-sub-betting-tab" data-bs-toggle="pill" data-bs-target="#win-sub-betting" type="button" role="tab" aria-controls="win-sub-betting" aria-selected="false">하부배팅내역</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-rate-tab" data-bs-toggle="pill" data-bs-target="#win-rate" type="button" role="tab" aria-controls="win-rate" aria-selected="false">요율설정</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-stat-tab" data-bs-toggle="pill" data-bs-target="#win-stat" type="button" role="tab" aria-controls="win-stat" aria-selected="false">회원통계</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-sub-stat-tab" data-bs-toggle="pill" data-bs-target="#win-sub-stat" type="button" role="tab" aria-controls="win-sub-stat" aria-selected="false">하부통계</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-syn-stat-tab" data-bs-toggle="pill" data-bs-target="#win-syn-stat" type="button" role="tab" aria-controls="win-syn-stat" aria-selected="false">종합통계</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="win-func-tab" data-bs-toggle="pill" data-bs-target="#win-func" type="button" role="tab" aria-controls="win-func" aria-selected="false">회원기능</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="win-tabContent">
+                <div class="tab-pane fade show active" id="win-user" role="tabpanel" aria-labelledby="win-user-tab">
+                    <div class="inner">
+                        <div class="table_top mb10">
+                            <button type="button" class="btn line sky mla" data-bs-toggle="modal" data-bs-target=".subgenModal">하부생성</button>
+                            <button type="button" class="btn blue ml5">수정</button>
+                        </div>
+                        <table class="form_table">
+                            <colgroup>
+                                <col style="width: 15%"/>
+                                <col style="width: 35%"/>
+                                <col style="width: 15%"/>
+                                <col style="width: 35%"/>
+                            </colgroup>
+                            <tr>
+                                <th>상위</th>
+                                <td>본사</td>
+                                <th>트리구조</th>
+                                <td>
+                                    본사
+                                    <button type="button" class="a_box gray ml10" data-bs-toggle="modal" data-bs-target=".lineMoveModal">라인이동</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>단계</th>
+                                <td>다이아</td>
+                                <th>레벨</th>
+                                <td>
+                                    <select name="level">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td>
+                                    <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="../assets/images/user_profile.svg" alt="" />
+                                        <p>tester</p>
+                                    </figure>
+                                    <ul class="dropdown-menu">
+                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                    </ul>
+                                </td>
+                                <th>비밀번호</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="비밀번호 입력" value="1234">
+                                        <p class="ml10">비번 오류</p>
+                                        <input type="text" class="form-control w50" value="0">
+                                        <span class="input-group-text">회</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>닉네임 / 이름</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="닉네임 입력" value="ww">
+                                        <p>/</p>
+                                        <input type="text" class="form-control" placeholder="이름 입력" value="WWW">
+                                    </div>
+                                </td>
+                                <th>상태</th>
+                                <td>
+                                    <select name="state">
+                                        <option value="1">가입요청</option>
+                                        <option value="2">가입대기</option>
+                                        <option value="3">정상회원</option>
+                                        <option value="4">블랙회원</option>
+                                        <option value="5">탈퇴회원</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>연락처</th>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="연락처 입력" value="01012345678">
+                                </td>
+                                <th>은행</th>
+                                <td>
+                                    <select name="bank">
+                                        <option value="">은행 선택</option>
+                                        <option value="35">경남은행</option>
+                                        <option value="29">광주은행</option>
+                                        <option value="7">국민은행</option>
+                                        <option value="5">기업은행</option>
+                                        <option value="15">농협중앙회</option>
+                                        <option value="17">농협회원조합</option>
+                                        <option value="25">대구은행</option>
+                                        <option value="47">도이치은행</option>
+                                        <option value="27">부산은행</option>
+                                        <option value="3">산업은행</option>
+                                        <option value="41">상호저축은행</option>
+                                        <option value="37">새마을금고</option>
+                                        <option value="11">수협중앙회</option>
+                                        <option value="36">신한금융투자</option>
+                                        <option value="60">신한은행</option>
+                                        <option value="39">신협중앙회</option>
+                                        <option value="9">외환은행</option>
+                                        <option value="19">우리은행</option>
+                                        <option value="56">우체국</option>
+                                        <option value="33">전북은행</option>
+                                        <option value="31">제주은행</option>
+                                        <option value="68">카카오뱅크</option>
+                                        <option value="67">케이뱅크</option>
+                                        <option value="59">하나은행</option>
+                                        <option value="23">한국씨티은행</option>
+                                        <option value="45">HSBC은행</option>
+                                        <option value="21">SC제일은행</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>계좌번호</th>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="계좌번호 입력" value="84565422789645">
+                                </td>
+                                <th>예금주</th>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="예금주 입력" value="홍길동">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>색상</th>
+                                <td colspan="3">
+                                    <select name="color">
+                                        <option value="">색상 선택</option>
+                                        <option value="1">빨강</option>
+                                        <option value="2">파랑</option>
+                                        <option value="3">노랑</option>
+                                        <option value="4">초록</option>
+                                        <option value="5">검정</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>메모</th>
+                                <td colspan="3">
+                                    <textarea name="memo" rows="3" class="no_resize"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="form_table bordered mt20">
+                            <colgroup>
+                                <col style="width: 15%"/>
+                                <col style="width: 10%"/>
+                                <col style="width: 15%"/>
+                                <col style="width: 10%"/>
+                                <col style="width: 15%"/>
+                                <col style="width: auto"/>
+                            </colgroup>
+                            <tr>
+                                <th>보유머니</th>
+                                <td>0 원</td>
+                                <th>보유포인트</th>
+                                <td>0 P</td>
+                                <th>보유코인</th>
+                                <td>
+                                    0.00
+                                    <button type="button" class="a_box gray ml10" data-bs-toggle="modal" data-bs-target=".takeCoinModal">코인회수</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>롤링지급액</th>
+                                <td>0 원</td>
+                                <th>총 충전액</th>
+                                <td>0 P</td>
+                                <th>총 환전액</th>
+                                <td>0 원</td>
+                            </tr>
+                            <tr>
+                                <th>총 수익</th>
+                                <td>0 원</td>
+                                <th>하부회원수</th>
+                                <td>2명</td>
+                                <th>배팅성향</th>
+                                <td>
+                                    <span class="mr10">스포츠 : 0%</span>
+                                    <span class="mr10">카지노 : 0%</span>
+                                    <span class="mr10">슬롯 : 0%</span>
+                                    <span class="mr10">미니게임 : 0%</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="win-betting" role="tabpanel" aria-labelledby="win-betting-tab">
+                    <div class="inner_tab">
+                        <ul class="nav bot-line" id="win-betting-inner-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="win-sports-tab" data-bs-toggle="pill" data-bs-target="#win-sports" type="button" role="tab" aria-controls="win-sports" aria-selected="true">스포츠</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-casino-tab" data-bs-toggle="pill" data-bs-target="#win-casino" type="button" role="tab" aria-controls="win-casino" aria-selected="false">카지노</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-slot-tab" data-bs-toggle="pill" data-bs-target="#win-slot" type="button" role="tab" aria-controls="win-slot" aria-selected="false">슬롯</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-mini-tab" data-bs-toggle="pill" data-bs-target="#win-mini" type="button" role="tab" aria-controls="win-mini" aria-selected="false">미니게임</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="win-betting-inner-tabContent">
+                            <div class="tab-pane fade show active" id="win-sports" role="tabpanel" aria-labelledby="win-sports-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="situation" class="ml5">
+                                            <option value="0">상태</option>
+                                            <option value="1">대기</option>
+                                            <option value="2">적중</option>
+                                            <option value="3">낙첨</option>
+                                            <option value="4">취소</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>배팅게임</th>
+                                            <th>상태</th>
+                                            <th>폴더수</th>
+                                            <th>배당</th>
+                                            <th>보너스배당</th>
+                                            <th>배팅금액</th>
+                                            <th>예상적중금</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅시간</th>
+                                            <th>관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>배팅게임</td>
+                                            <td>상태</td>
+                                            <td>폴더수</td>
+                                            <td>배당</td>
+                                            <td>보너스배당</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                            <td>관리</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="15">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-casino" role="tabpanel" aria-labelledby="win-casino-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>게임사</th>
+                                            <th>배팅게임</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>게임사</td>
+                                            <td>배팅게임</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="12">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-slot" role="tabpanel" aria-labelledby="win-slot-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>게임사</th>
+                                            <th>배팅게임</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>게임사</td>
+                                            <td>배팅게임</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="12">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-mini" role="tabpanel" aria-labelledby="win-mini-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="game" class="ml5">
+                                            <option value="0">게임</option>
+                                            <option value="1">파워볼</option>
+                                            <option value="2">파워사다리</option>
+                                        </select>
+                                        <select name="gametime" class="ml5">
+                                            <option value="0">게임 분</option>
+                                            <option value="1">3분</option>
+                                            <option value="2">5분</option>
+                                        </select>
+                                        <select name="bet_type" class="ml5">
+                                            <option value="0">배팅타입</option>
+                                            <option value="1">파워볼</option>
+                                            <option value="2">일반볼조합</option>
+                                            <option value="3">파워볼조합</option>
+                                            <option value="4">파워볼홀짝조합</option>
+                                            <option value="4">파워사다리</option>
+                                            <option value="4">파워사다리조합</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>날짜</th>
+                                            <th>배팅게임</th>
+                                            <th>회차</th>
+                                            <th>배팅타입</th>
+                                            <th>상태</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>2022-09-23</td>
+                                            <td>파워볼</td>
+                                            <td>1</td>
+                                            <td>파워볼</td>
+                                            <td>상태</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="15">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="win-sub-betting" role="tabpanel" aria-labelledby="win-sub-betting-tab">
+                    <div class="inner_tab">
+                        <ul class="nav bot-line" id="win-sub-betting-inner-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="win-sub-sports-tab" data-bs-toggle="pill" data-bs-target="#win-sub-sports" type="button" role="tab" aria-controls="win-sub-sports" aria-selected="true">스포츠</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-sub-casino-tab" data-bs-toggle="pill" data-bs-target="#win-sub-casino" type="button" role="tab" aria-controls="win-sub-casino" aria-selected="false">카지노</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-sub-slot-tab" data-bs-toggle="pill" data-bs-target="#win-sub-slot" type="button" role="tab" aria-controls="win-sub-slot" aria-selected="false">슬롯</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-sub-mini-tab" data-bs-toggle="pill" data-bs-target="#win-sub-mini" type="button" role="tab" aria-controls="win-sub-mini" aria-selected="false">미니게임</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="win-sub-betting-inner-tabContent">
+                            <div class="tab-pane fade show active" id="win-sub-sports" role="tabpanel" aria-labelledby="win-sub-sports-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="situation" class="ml5">
+                                            <option value="0">상태</option>
+                                            <option value="1">대기</option>
+                                            <option value="2">적중</option>
+                                            <option value="3">낙첨</option>
+                                            <option value="4">취소</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>배팅게임</th>
+                                            <th>상태</th>
+                                            <th>폴더수</th>
+                                            <th>배당</th>
+                                            <th>보너스배당</th>
+                                            <th>배팅금액</th>
+                                            <th>예상적중금</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅시간</th>
+                                            <th>관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>배팅게임</td>
+                                            <td>상태</td>
+                                            <td>폴더수</td>
+                                            <td>배당</td>
+                                            <td>보너스배당</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                            <td>관리</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="15">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-sub-casino" role="tabpanel" aria-labelledby="win-sub-casino-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>게임사</th>
+                                            <th>배팅게임</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>게임사</td>
+                                            <td>배팅게임</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="12">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-sub-slot" role="tabpanel" aria-labelledby="win-sub-slot-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                            <option value="4">배팅키</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>게임사</th>
+                                            <th>배팅게임</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>게임사</td>
+                                            <td>배팅게임</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="12">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-sub-mini" role="tabpanel" aria-labelledby="win-sub-mini-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <select name="number">
+                                            <option value="1">30개</option>
+                                            <option value="2">100개</option>
+                                            <option value="3">200개</option>
+                                            <option value="4">500개</option>
+                                            <option value="5">1000개</option>
+                                        </select>
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                                        <select name="game" class="ml5">
+                                            <option value="0">게임</option>
+                                            <option value="1">파워볼</option>
+                                            <option value="2">파워사다리</option>
+                                        </select>
+                                        <select name="gametime" class="ml5">
+                                            <option value="0">게임 분</option>
+                                            <option value="1">3분</option>
+                                            <option value="2">5분</option>
+                                        </select>
+                                        <select name="bet_type" class="ml5">
+                                            <option value="0">배팅타입</option>
+                                            <option value="1">파워볼</option>
+                                            <option value="2">일반볼조합</option>
+                                            <option value="3">파워볼조합</option>
+                                            <option value="4">파워볼홀짝조합</option>
+                                            <option value="4">파워사다리</option>
+                                            <option value="4">파워사다리조합</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">이름</option>
+                                            <option value="3">닉네임</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="blue_box">
+                                        <dl class="flex">
+                                            <dt>총 배팅금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 당첨금액 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                        <dl class="flex">
+                                            <dt>총 수익 :</dt>
+                                            <dd>0 (0)</dd>
+                                        </dl>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>레벨</th>
+                                            <th>날짜</th>
+                                            <th>배팅게임</th>
+                                            <th>회차</th>
+                                            <th>배팅타입</th>
+                                            <th>상태</th>
+                                            <th>배팅금액</th>
+                                            <th>적중금액</th>
+                                            <th>수익</th>
+                                            <th>배팅 전 머니</th>
+                                            <th>배팅 후 머니</th>
+                                            <th>배팅시간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>본사</td>
+                                            <td>1</td>
+                                            <td>2022-09-23</td>
+                                            <td>파워볼</td>
+                                            <td>1</td>
+                                            <td>파워볼</td>
+                                            <td>상태</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>100,000</td>
+                                            <td>2022-09-23 18:29:09</td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="15">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="win-rate" role="tabpanel" aria-labelledby="win-rate-tab">
+                    <div class="inner">
+                        <div class="table_top mb10">
+                            <button type="button" class="btn blue mla">수정</button>
+                        </div>
+                        <table class="form_table">
+                            <colgroup>
+                                <col style="width: 20%"/>
+                                <col style="width: 30%"/>
+                                <col style="width: 20%"/>
+                                <col style="width: 30%"/>
+                            </colgroup>
+                            <tr>
+                                <th>스포츠 루징%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>스포츠 단폴 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="0">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>카지노 루징%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>스포츠 다폴 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="0">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>슬롯 루징%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>카지노 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="0">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>미니게임 루징%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>슬롯 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>파워볼 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>일반볼조합 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>파워볼조합 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>파워볼 홀짝조합 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>파워사다리 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th>파워사다리조합 롤링%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>슬롯누락%</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="2">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="win-stat" role="tabpanel" aria-labelledby="win-stat-tab">
+                    <div class="inner_tab">
+                        <ul class="nav bot-line" id="win-stat-inner-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="win-stat-sports-tab" data-bs-toggle="pill" data-bs-target="#win-stat-sports" type="button" role="tab" aria-controls="win-stat-sports" aria-selected="true">스포츠</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-stat-casino-tab" data-bs-toggle="pill" data-bs-target="#win-stat-casino" type="button" role="tab" aria-controls="win-stat-casino" aria-selected="false">카지노</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-stat-slot-tab" data-bs-toggle="pill" data-bs-target="#win-stat-slot" type="button" role="tab" aria-controls="win-stat-slot" aria-selected="false">슬롯</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="win-stat-mini-tab" data-bs-toggle="pill" data-bs-target="#win-stat-mini" type="button" role="tab" aria-controls="win-stat-mini" aria-selected="false">미니게임</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="win-stat-stat-inner-tabContent">
+                            <div class="tab-pane fade show active" id="win-stat-sports" role="tabpanel" aria-labelledby="win-stat-sports-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker" />
+                                        <select name="rank" class="ml5">
+                                            <option value="0">단계</option>
+                                            <option value="1">다이아</option>
+                                            <option value="2">플레티넘</option>
+                                            <option value="3">골드</option>
+                                            <option value="4">실버</option>
+                                            <option value="5">브론즈</option>
+                                            <option value="6">아이언</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">닉네임</option>
+                                            <option value="3">이름</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>충전금액</th>
+                                            <th>환전금액</th>
+                                            <th>충환손익</th>
+                                            <th>배팅금액</th>
+                                            <th>당첨금액</th>
+                                            <th>롤링금액</th>
+                                            <th>손익금액</th>
+                                            <th>보유금액</th>
+                                            <th>정산금액</th>
+                                            <th>관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="t_left">
+                                                <span class="depth"></span>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                            </td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="13">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-stat-casino" role="tabpanel" aria-labelledby="win-stat-casino-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker" />
+                                        <select name="rank" class="ml5">
+                                            <option value="0">단계</option>
+                                            <option value="1">다이아</option>
+                                            <option value="2">플레티넘</option>
+                                            <option value="3">골드</option>
+                                            <option value="4">실버</option>
+                                            <option value="5">브론즈</option>
+                                            <option value="6">아이언</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">닉네임</option>
+                                            <option value="3">이름</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>충전금액</th>
+                                            <th>환전금액</th>
+                                            <th>충환손익</th>
+                                            <th>배팅금액</th>
+                                            <th>당첨금액</th>
+                                            <th>롤링금액</th>
+                                            <th>손익금액</th>
+                                            <th>보유금액</th>
+                                            <th>정산금액</th>
+                                            <th>관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="t_left">
+                                                <span class="depth"></span>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                            </td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="13">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-stat-slot" role="tabpanel" aria-labelledby="win-stat-slot-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker" />
+                                        <select name="rank" class="ml5">
+                                            <option value="0">단계</option>
+                                            <option value="1">다이아</option>
+                                            <option value="2">플레티넘</option>
+                                            <option value="3">골드</option>
+                                            <option value="4">실버</option>
+                                            <option value="5">브론즈</option>
+                                            <option value="6">아이언</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">닉네임</option>
+                                            <option value="3">이름</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <table class="list_table">
+                                        <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>닉네임(이름)</th>
+                                            <th>상위</th>
+                                            <th>충전금액</th>
+                                            <th>환전금액</th>
+                                            <th>충환손익</th>
+                                            <th>배팅금액</th>
+                                            <th>당첨금액</th>
+                                            <th>롤링금액</th>
+                                            <th>손익금액</th>
+                                            <th>보유금액</th>
+                                            <th>정산금액</th>
+                                            <th>관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="t_left">
+                                                <span class="depth"></span>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>ww (WWW)</td>
+                                            <td>
+                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                    <p>tester</p>
+                                                </figure>
+                                                <ul class="dropdown-menu">
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                </ul>
+                                            </td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                            </td>
+                                        </tr>
+                                        <!--
+										<tr>
+											<td class="none" colspan="13">
+												내용이 없습니다.
+											</td>
+										</tr>
+										-->
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination mt10">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">다음</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="win-stat-mini" role="tabpanel" aria-labelledby="win-stat-mini-tab">
+                                <div class="inner">
+                                    <div class="table_top mb10">
+                                        <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker" />
+                                        <select name="rank" class="ml5">
+                                            <option value="0">단계</option>
+                                            <option value="1">다이아</option>
+                                            <option value="2">플레티넘</option>
+                                            <option value="3">골드</option>
+                                            <option value="4">실버</option>
+                                            <option value="5">브론즈</option>
+                                            <option value="6">아이언</option>
+                                        </select>
+                                        <select name="search" class="ml5">
+                                            <option value="0">검색기준</option>
+                                            <option value="1">아이디</option>
+                                            <option value="2">닉네임</option>
+                                            <option value="3">이름</option>
+                                        </select>
+                                        <input type="text" name="search" class="ml5" placeholder="검색어" />
+                                        <button type="button" class="btn blue ml5">검색</button>
+                                    </div>
+                                    <div class="inner_tab">
+                                        <ul class="nav bot-line" id="win-stat-sub-inner-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="win-stat-sub-basic-tab" data-bs-toggle="pill" data-bs-target="#win-stat-sub-basic" type="button" role="tab" aria-controls="win-stat-sub-basic" aria-selected="true">스포츠</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="win-stat-sub-combi-tab" data-bs-toggle="pill" data-bs-target="#win-stat-sub-combi" type="button" role="tab" aria-controls="win-stat-sub-combi" aria-selected="false">카지노</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="win-stat-sub-all-tab" data-bs-toggle="pill" data-bs-target="#win-stat-sub-all" type="button" role="tab" aria-controls="win-stat-sub-all" aria-selected="false">슬롯</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="win-stat-sub-stat-inner-tabContent">
+                                            <div class="tab-pane fade show active" id="win-stat-sub-basic" role="tabpanel" aria-labelledby="win-stat-sub-basic-tab">
+                                                <div class="inner">
+                                                    <table class="list_table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>아이디</th>
+                                                            <th>닉네임(이름)</th>
+                                                            <th>상위</th>
+                                                            <th>충전금액</th>
+                                                            <th>환전금액</th>
+                                                            <th>충환손익</th>
+                                                            <th>배팅금액</th>
+                                                            <th>당첨금액</th>
+                                                            <th>롤링금액</th>
+                                                            <th>손익금액</th>
+                                                            <th>보유금액</th>
+                                                            <th>정산금액</th>
+                                                            <th>관리</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="t_left">
+                                                                <span class="depth"></span>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>ww (WWW)</td>
+                                                            <td>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>
+                                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                                            </td>
+                                                        </tr>
+                                                        <!--
+														<tr>
+															<td class="none" colspan="13">
+																내용이 없습니다.
+															</td>
+														</tr>
+														-->
+                                                        </tbody>
+                                                    </table>
+                                                    <ul class="pagination mt10">
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item active" aria-current="page">
+                                                            <a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">다음</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="win-stat-sub-combi" role="tabpanel" aria-labelledby="win-stat-sub-combi-tab">
+                                                <div class="inner">
+                                                    <table class="list_table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>아이디</th>
+                                                            <th>닉네임(이름)</th>
+                                                            <th>상위</th>
+                                                            <th>충전금액</th>
+                                                            <th>환전금액</th>
+                                                            <th>충환손익</th>
+                                                            <th>배팅금액</th>
+                                                            <th>당첨금액</th>
+                                                            <th>롤링금액</th>
+                                                            <th>손익금액</th>
+                                                            <th>보유금액</th>
+                                                            <th>정산금액</th>
+                                                            <th>관리</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="t_left">
+                                                                <span class="depth"></span>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>ww (WWW)</td>
+                                                            <td>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>
+                                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                                            </td>
+                                                        </tr>
+                                                        <!--
+                                                        <tr>
+                                                            <td class="none" colspan="13">
+                                                                내용이 없습니다.
+                                                            </td>
+                                                        </tr>
+                                                        -->
+                                                        </tbody>
+                                                    </table>
+                                                    <ul class="pagination mt10">
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item active" aria-current="page">
+                                                            <a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">다음</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="win-stat-sub-all" role="tabpanel" aria-labelledby="win-stat-sub-all-tab">
+                                                <div class="inner">
+                                                    <table class="list_table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>아이디</th>
+                                                            <th>닉네임(이름)</th>
+                                                            <th>상위</th>
+                                                            <th>충전금액</th>
+                                                            <th>환전금액</th>
+                                                            <th>충환손익</th>
+                                                            <th>배팅금액</th>
+                                                            <th>당첨금액</th>
+                                                            <th>롤링금액</th>
+                                                            <th>손익금액</th>
+                                                            <th>보유금액</th>
+                                                            <th>정산금액</th>
+                                                            <th>관리</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="t_left">
+                                                                <span class="depth"></span>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>ww (WWW)</td>
+                                                            <td>
+                                                                <figure class="user_info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <img src="../assets/images/user_profile.svg" alt="" />
+                                                                    <p>tester</p>
+                                                                </figure>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".sendMsgModal">쪽지보내기</button></li>
+                                                                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".randomPayModal">임의지급</button></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="moneyLogWin()">머니로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="pointLogWin()">포인트로그</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="loginWin()">로그인내역</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">종합통계</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 리스트</a></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">하부회원 배팅내역</a></li>
+                                                                    <li><hr class="dropdown-divider"></li>
+                                                                    <li><a href="javascript:;" class="dropdown-item" onclick="userWin()">회원상세</a></li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>
+                                                                <button type="button" class="a_box gray" data-bs-toggle="modal" data-bs-target=".paymentModal">지급</button>
+                                                            </td>
+                                                        </tr>
+                                                        <!--
+                                                        <tr>
+                                                            <td class="none" colspan="13">
+                                                                내용이 없습니다.
+                                                            </td>
+                                                        </tr>
+                                                        -->
+                                                        </tbody>
+                                                    </table>
+                                                    <ul class="pagination mt10">
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item active" aria-current="page">
+                                                            <a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">다음</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="win-func" role="tabpanel" area-labelledby="win-func-tab">
+                    <div class="inner">
+                        <div class="table_top mb10">
+                            <button type="button" class="btn blue mla">수정</button>
+                        </div>
+                        <table class="form_table">
+                            <colgroup>
+                                <col style="width: 20%"/>
+                                <col style="width: 30%"/>
+                                <col style="width: 20%"/>
+                                <col style="width: 30%"/>
+                            </colgroup>
+                            <tr>
+                                <th>총판페이지 접근여부</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func1" id="func1-1" checked>
+                                            <label class="form-check-label" for="func1-1">
+                                                불가능
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func1" id="func1-2">
+                                            <label class="form-check-label" for="func1-2">
+                                                가능
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <th>추천인 코드 사용여부</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func2" id="func2-1" checked>
+                                            <label class="form-check-label" for="func2-1">
+                                                불가능
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func2" id="func2-2">
+                                            <label class="form-check-label" for="func2-2">
+                                                가능
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>하부 생성 가능여부</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func3" id="func3-1" checked>
+                                            <label class="form-check-label" for="func3-1">
+                                                불가능
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func3" id="func3-2">
+                                            <label class="form-check-label" for="func3-2">
+                                                가능
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <th>하부 머니지급</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func4" id="func4-1" checked>
+                                            <label class="form-check-label" for="func4-1">
+                                                불가능
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func4" id="func4-2">
+                                            <label class="form-check-label" for="func4-2">
+                                                가능
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>하부 머니회수</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func5" id="func5-1" checked>
+                                            <label class="form-check-label" for="func5-1">
+                                                불가능
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func5" id="func5-2">
+                                            <label class="form-check-label" for="func5-2">
+                                                가능
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <th>매장여부</th>
+                                <td>
+                                    <div class="flex f_center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="func6" id="func6-1" checked>
+                                            <label class="form-check-label" for="func6-1">
+                                                일반
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml10">
+                                            <input class="form-check-input" type="radio" name="func6" id="func6-2">
+                                            <label class="form-check-label" for="func6-2">
+                                                매장
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- subgenModal -->
+<div class="modal fade subgenModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">하부생성</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <colgroup>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                    </colgroup>
+                    <tr>
+                        <th>상위</th>
+                        <td class="t_left" colspan="3">[다] tester</td>
+                    </tr>
+                    <tr>
+                        <th>아이디</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="아이디">
+                        </td>
+                        <th>비밀번호</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="비밀번호">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="이름">
+                        </td>
+                        <th>닉네임</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="닉네임">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="연락처( - 하이픈 제외)">
+                        </td>
+                        <th>은행</th>
+                        <td>
+                            <select name="bank">
+                                <option value="">은행 선택</option>
+                                <option value="35">경남은행</option>
+                                <option value="29">광주은행</option>
+                                <option value="7">국민은행</option>
+                                <option value="5">기업은행</option>
+                                <option value="15">농협중앙회</option>
+                                <option value="17">농협회원조합</option>
+                                <option value="25">대구은행</option>
+                                <option value="47">도이치은행</option>
+                                <option value="27">부산은행</option>
+                                <option value="3">산업은행</option>
+                                <option value="41">상호저축은행</option>
+                                <option value="37">새마을금고</option>
+                                <option value="11">수협중앙회</option>
+                                <option value="36">신한금융투자</option>
+                                <option value="60">신한은행</option>
+                                <option value="39">신협중앙회</option>
+                                <option value="9">외환은행</option>
+                                <option value="19">우리은행</option>
+                                <option value="56">우체국</option>
+                                <option value="33">전북은행</option>
+                                <option value="31">제주은행</option>
+                                <option value="68">카카오뱅크</option>
+                                <option value="67">케이뱅크</option>
+                                <option value="59">하나은행</option>
+                                <option value="23">한국씨티은행</option>
+                                <option value="45">HSBC은행</option>
+                                <option value="21">SC제일은행</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>계좌번호</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="계좌번호( - 하이픈 제외)">
+                        </td>
+                        <th>예금주</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="예금주">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">생성</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- lineMoveModal -->
+<div class="modal fade m_size lineMoveModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">회원 라인이동</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="warning">
+                    <h5>회원 라인이동시 정산데이터가 맞지 않을 수 있으니<br/> 신중히 이동해주세요.</h5>
+                    <p>이동 후 해당 회원의 루징, 롤링%는 초기화됩니다.</p>
+                </div>
+                <table class="mt20">
+                    <colgroup>
+                        <col style="width: 20%"/>
+                        <col style="width: auto"/>
+                    </colgroup>
+                    <tr>
+                        <th>아이디</th>
+                        <td class="t_left">tester</td>
+                    </tr>
+                    <tr>
+                        <th>상위</th>
+                        <td>
+                            <select name="bank">
+                                <option value="WWWWWWWWW_d1">WWWWWWWWW [WW / WWW]</option>
+                                <option value="WWWWWWWWW_d2_1">&nbsp;-&nbsp; WW [WWW / WW]</option>
+                                <option value="WWWWWWWWW_d2_2">&nbsp;-&nbsp; test [test / test]</option>
+                                <option value="depth1_d1">depth1 [뎁스1 / 뎁스1]</option>
+                                <option value="depth1_d2_1">&nbsp;-&nbsp; WW [WWW / WW]</option>
+                                <option value="depth1_d3_1">&nbsp;-&nbsp;-&nbsp; test [test / test]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">이동</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- takeCoinModal -->
+<div class="modal fade m_size takeCoinModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">코인회수</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <colgroup>
+                        <col style="width: 30%"/>
+                        <col style="width: auto"/>
+                    </colgroup>
+                    <tr>
+                        <th>아이디</th>
+                        <td class="t_left">WWWWWWWWW</td>
+                    </tr>
+                    <tr>
+                        <th>보유머니</th>
+                        <td class="t_left">0 원</td>
+                    </tr>
+                    <tr>
+                        <th>보유포인트</th>
+                        <td class="t_left">0 P</td>
+                    </tr>
+                    <tr>
+                        <th>보유코인</th>
+                        <td class="t_left">0 개</td>
+                    </tr>
+                    <tr>
+                        <th>갯수</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="회수할 코인 갯수 입력">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- paymentModal -->
+<div class="modal fade m_size paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">정산금 지급</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <colgroup>
+                        <col style="width: 30%"/>
+                        <col style="width: auto"/>
+                    </colgroup>
+                    <tr>
+                        <th>아이디</th>
+                        <td class="t_left">tester</td>
+                    </tr>
+                    <tr>
+                        <th>보유머니</th>
+                        <td class="t_left">0 원</td>
+                    </tr>
+                    <tr>
+                        <th>보유포인트</th>
+                        <td class="t_left">0 P</td>
+                    </tr>
+                    <tr>
+                        <th>정산타입</th>
+                        <td>
+                            <div class="flex">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="type" id="type1" checked>
+                                    <label class="form-check-label" for="type1">
+                                        스포츠
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="type" id="type2">
+                                    <label class="form-check-label" for="type2">
+                                        카지노
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="type" id="type3">
+                                    <label class="form-check-label" for="type3">
+                                        슬롯
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="type" id="type4">
+                                    <label class="form-check-label" for="type4">
+                                        미니게임
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>금액</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="금액 입력">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="modalArea"></section>
+
+<!-- JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../assets/js/styles.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

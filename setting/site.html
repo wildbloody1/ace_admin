@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>에이스 관리자</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css" />
+    <link href="/ace_admin/assets/css/styles.css" rel="stylesheet" media="all">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+            $("#leftArea").load("/ace_admin/leftArea.html");
+            $("#topArea").load("/ace_admin/topArea.html");
+
+        });
+    </script>
+
+</head>
+<body>
+<article>
+    <section id="leftArea"></section>
+    <section id="panel">
+        <div id="topArea"></div>
+        <div class="mainArea">
+            <div class="summary">
+                <button type="button">배팅유저<span>0</span></button>
+                <button type="button">배팅금액<span>0</span></button>
+                <button type="button">당첨금액<span>0</span></button>
+                <button type="button">총입금<span>0 (0)</span></button>
+                <button type="button">총출금<span>0 (0)</span></button>
+                <button type="button">손익<span>0</span></button>
+                <button type="button">알보유금액<span>-6,614,260</span></button>
+                <button type="button">보유머니<span>0</span></button>
+                <button type="button">보유포인트<span>0</span></button>
+                <button type="button">롤링정산금<span>0</span></button>
+                <button type="button">SMS<span>0 (0건)</span></button>
+            </div>
+            <h4 class="title">사이트설정</h4>
+            <div class="block">
+                <div class="flex mb20">
+                    <button type="button" class="btn blue mla">수정</button>
+                </div>
+                <div class="table_top mb10">
+                    <h5>게임설정</h5>
+                </div>
+                <table class="form_table">
+                    <colgroup>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                    </colgroup>
+                    <tr>
+                        <th>스포츠 사용여부</th>
+                        <th>카지노 사용여부</th>
+                        <th>슬롯 사용여부</th>
+                        <th>미니게임 사용여부</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sports_user" id="sports_on" checked>
+                                    <label class="form-check-label" for="sports_on">
+                                        사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="sports_user" id="sports_off">
+                                    <label class="form-check-label" for="sports_off">
+                                        미사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="casino_user" id="casino_on" checked>
+                                    <label class="form-check-label" for="casino_on">
+                                        사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="casino_user" id="casino_off">
+                                    <label class="form-check-label" for="casino_off">
+                                        미사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="slot_user" id="slot_on" checked>
+                                    <label class="form-check-label" for="slot_on">
+                                        사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="slot_user" id="slot_off">
+                                    <label class="form-check-label" for="slot_off">
+                                        미사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="minigame_user" id="minigame_on" checked>
+                                    <label class="form-check-label" for="minigame_on">
+                                        사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="minigame_user" id="minigame_off">
+                                    <label class="form-check-label" for="minigame_off">
+                                        미사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="table_top mt30 mb10">
+                    <h5>기본설정</h5>
+                </div>
+                <table class="form_table">
+                    <colgroup>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                        <col style="width: 20%"/>
+                        <col style="width: 30%"/>
+                    </colgroup>
+                    <tr>
+                        <th>최소 입금액</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="10000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                        <th>입금액 단위</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="1000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>최소 출금액</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="10000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                        <th>출금액 단위</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="10000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>1회 최대 입금액</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="100000000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                        <th>1회 최대 출금액</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="50000000">
+                                <span class="input-group-text">원</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>포인트전환 최소금액</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="1000">
+                                <span class="input-group-text">P</span>
+                            </div>
+                        </td>
+                        <th>포인트전환 단위</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="0">
+                                <span class="input-group-text">P</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>입금 대기시간</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="0">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                        <th>출금 대기시간</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="0">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>은행 점검시간</th>
+                        <td>
+                            <input type="text" class="form-control" value="23:50~00:30">
+                        </td>
+                        <th>은행 점검 메세지</th>
+                        <td>
+                            <input type="text" class="form-control" value="23:50~00:30 은행점검시간입니다.">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>입금시 주의사항</th>
+                        <td colspan="3">
+                            <textarea name="notes_deposit" rows="10">
+· 입금하시기 전에 충전계좌를 확인하여 주시기 바랍니다. (변경 전 계좌로 입금시 충전처리가 불가합니다)
+· 등록되신 예금주와 다른 계좌로 입금하실경우 충전이 불가하오니 반드시 등록되신 본인 계좌로 입금하시기 바랍니다
+· 충전최소금액은 10,000원이며, 10,000원 이상부터는 1,000원 단위 입금이 가능합니다
+· 입금점검시간에는 충전이 불가능 하오니 점검이 완료된 후에 신청하여 주시기 바랍니다
+· 수표입금은 절대 불가합니다 (수표입금시 처리불가 및 자동 탈퇴처리)
+· 첫가입 첫입금 회원의 경우 일주일이내 배팅 총 금액이 10만원 이하일 경우 탈퇴처리 됩니다
+· 신규 가입첫 계좌문의 후 12시간 이내 미충전시 탈퇴처리 됩니다.
+· 코인 입금시 필히 고객센터로 문의후 이용 하시기 바랍니다.</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>출금시 주의사항</th>
+                        <td colspan="3">
+                            <textarea name="notes_withdrawal" rows="10">
+· 24시간 자유롭게 환전이 가능하며 10분 이내에 처리를 원칙으로 하고 있으나 운영상황에 따라 지연될 수 있습니다
+· 환전최소금액은 10,000원이며, 10,000원 단위만 가능합니다 (ex 10,000원 가능 / 19,000원 불가)
+· 은행점검시간에는 환전이 불가능 하오니 점검이 완료된 후에 신청하여 주시기 바랍니다
+· 환전은 신청 즉시 계정에서 차감됩니다</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>사이트 텔레그램</th>
+                        <td colspan="3">
+                            <input type="text" class="form-control" value="@OCEANCS7">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../assets/js/styles.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

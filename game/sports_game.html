@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>에이스 관리자</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css" />
+    <link href="/ace_admin/assets/css/styles.css" rel="stylesheet" media="all">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+            $("#leftArea").load("/ace_admin/leftArea.html");
+            $("#topArea").load("/ace_admin/topArea.html");
+
+        });
+    </script>
+
+</head>
+<body>
+<article>
+    <section id="leftArea"></section>
+    <section id="panel">
+        <div id="topArea"></div>
+        <div class="mainArea">
+            <div class="summary">
+                <button type="button">배팅유저<span>0</span></button>
+                <button type="button">배팅금액<span>0</span></button>
+                <button type="button">당첨금액<span>0</span></button>
+                <button type="button">총입금<span>0 (0)</span></button>
+                <button type="button">총출금<span>0 (0)</span></button>
+                <button type="button">손익<span>0</span></button>
+                <button type="button">알보유금액<span>-6,614,260</span></button>
+                <button type="button">보유머니<span>0</span></button>
+                <button type="button">보유포인트<span>0</span></button>
+                <button type="button">롤링정산금<span>0</span></button>
+                <button type="button">SMS<span>0 (0건)</span></button>
+            </div>
+            <h4 class="title">스포츠 게임관리</h4>
+            <div class="block">
+                <div class="table_top mb10">
+                    <h5>배팅 관리</h5>
+                    <button type="button" class="btn blue mla">수정</button>
+                </div>
+                <table class="form_table">
+                    <colgroup>
+                        <col style="width:15%">
+                        <col style="width:35%">
+                        <col style="width:15%">
+                        <col style="width:35%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td>배팅취소 가능 시간 (배팅후)</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="20">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                        <td>배팅취소 가능 시간 (경기 시작 전)</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="10">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>배팅취소 가능 횟수 (1일 기준)</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="20">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                        <td>배팅취소 시 경고메세지</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="배팅취소는 하루에 5번 가능합니다. 신중하게 배팅해 주시기 바랍니다. 남은 횟수: {count} 회">
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="table_top mt30 mb10">
+                    <h5>조합 보너스</h5>
+                    <button type="button" class="btn line sky mla" data-bs-toggle="modal" data-bs-target=".combinationBonusModal">보너스 등록</button>
+                </div>
+                <table class="list_table">
+                    <thead>
+                    <tr>
+                        <th>폴더수</th>
+                        <th>보너스 배당</th>
+                        <th>조합 최소 배당</th>
+                        <th>에러메세지</th>
+                        <th>사용여부</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="3">
+                                <span class="input-group-text">분</span>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="1.03">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="1.2">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="보너스 조건을 확인하세요.">
+                        </td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="use2" id="combi_use1">
+                                    <label class="form-check-label" for="combi_use1">
+                                        미사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="combi_use" id="combi_use2" checked>
+                                    <label class="form-check-label" for="combi_use2">
+                                        사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="a_box gray">수정</button>
+                            <button type="button" class="a_box gray ml5">삭제</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- combinationBonusModal -->
+<div class="modal fade m_size combinationBonusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">조합 보너스 등록</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <colgroup>
+                        <col style="width: 30%"/>
+                        <col style="width: auto"/>
+                    </colgroup>
+                    <tr>
+                        <th>사용여부</th>
+                        <td>
+                            <div class="flex">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="use2" id="use2_1">
+                                    <label class="form-check-label" for="use2_1">
+                                        미사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="use2" id="use2_2" checked>
+                                    <label class="form-check-label" for="use2_2">
+                                        사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>폴더</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="폴더수 입력">
+                                <span class="input-group-text">폴</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>보너스 배당</th>
+                        <td>
+                            <input type="text" name="bonus" class="form-control" placeholder="보너스 배당 입력">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>최소 배당</th>
+                        <td>
+                            <input type="text" name="minimum" class="form-control" placeholder="최소 배당 입력">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>에러메세지</th>
+                        <td>
+                            <input type="text" name="error" class="form-control" placeholder="에러메세지 입력">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">등록</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../assets/js/styles.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

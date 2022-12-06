@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d4ac6d0e-5439-40ca-bfd3-07a9681b3b05" name="ace_admin" url="http://serenit.kr/ace_admin">
+        <fileTransfer rootFolder="/html/ace_admin" host="serenit.kr" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

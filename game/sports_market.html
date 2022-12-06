@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>에이스 관리자</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css" />
+    <link href="/ace_admin/assets/css/styles.css" rel="stylesheet" media="all">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+            $("#leftArea").load("/ace_admin/leftArea.html");
+            $("#topArea").load("/ace_admin/topArea.html");
+
+        });
+    </script>
+
+</head>
+<body>
+<article>
+    <section id="leftArea"></section>
+    <section id="panel">
+        <div id="topArea"></div>
+        <div class="mainArea">
+            <div class="summary">
+                <button type="button">배팅유저<span>0</span></button>
+                <button type="button">배팅금액<span>0</span></button>
+                <button type="button">당첨금액<span>0</span></button>
+                <button type="button">총입금<span>0 (0)</span></button>
+                <button type="button">총출금<span>0 (0)</span></button>
+                <button type="button">손익<span>0</span></button>
+                <button type="button">알보유금액<span>-6,614,260</span></button>
+                <button type="button">보유머니<span>0</span></button>
+                <button type="button">보유포인트<span>0</span></button>
+                <button type="button">롤링정산금<span>0</span></button>
+                <button type="button">SMS<span>0 (0건)</span></button>
+            </div>
+            <h4 class="title">스포츠 마켓관리</h4>
+            <div class="block">
+                <div class="table_top mb10">
+                    <select name="number">
+                        <option value="1">30개</option>
+                        <option value="2">100개</option>
+                        <option value="3">200개</option>
+                        <option value="4">500개</option>
+                        <option value="5">1000개</option>
+                    </select>
+                    <select name="event" class="ml5">
+                        <option value="0">종목</option>
+                        <option value="1">축구</option>
+                        <option value="2">농구</option>
+                        <option value="3">야구</option>
+                        <option value="4">배구</option>
+                        <option value="5">아이스하키</option>
+                        <option value="5">E-sports</option>
+                        <option value="6">미식축구</option>
+                        <option value="7">핸드볼</option>
+                        <option value="8">복싱</option>
+                        <option value="9">테니스</option>
+                        <option value="10">탁구</option>
+                    </select>
+                    <select name="type" class="ml5">
+                        <option value="0">게임타입</option>
+                        <option value="2">크로스</option>
+                        <option value="3">스페셜</option>
+                    </select>
+                    <select name="favorite" class="ml5">
+                        <option value="0">인기여부</option>
+                        <option value="1">인기</option>
+                        <option value="2">비인기</option>
+                    </select>
+                    <select name="search" class="ml5">
+                        <option value="0">검색기준</option>
+                        <option value="1">마켓타입</option>
+                        <option value="2">마켓구간</option>
+                        <option value="3">마켓명</option>
+                    </select>
+                    <input type="text" name="search" class="ml5" placeholder="검색어" />
+                    <button type="button" class="btn blue ml5">검색</button>
+                </div>
+                <table class="list_table">
+                    <thead>
+                    <tr>
+                        <th>종목</th>
+                        <th>마켓타입</th>
+                        <th>마켓구간</th>
+                        <th>마켓명</th>
+                        <th>크로스</th>
+                        <th>스페셜</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>축구</td>
+                        <td>승무패</td>
+                        <td>연장미포함</td>
+                        <td>연장제외 승무패</td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="cross" id="cross1">
+                                    <label class="form-check-label" for="cross1">
+                                        미사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="cross" id="cross2" checked>
+                                    <label class="form-check-label" for="cross2">
+                                        사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex f_center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="special" id="special1">
+                                    <label class="form-check-label" for="special1">
+                                        미사용
+                                    </label>
+                                </div>
+                                <div class="form-check ml10">
+                                    <input class="form-check-input" type="radio" name="special" id="special2" checked>
+                                    <label class="form-check-label" for="special2">
+                                        사용
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="a_box gray">수정</button>
+                        </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td class="none" colspan="7">
+                            내용이 없습니다.
+                        </td>
+                    </tr>
+                    -->
+                    </tbody>
+                </table>
+                <ul class="pagination mt10">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">다음</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../assets/js/styles.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

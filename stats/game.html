@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>에이스 관리자</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css" />
+    <link href="/ace_admin/assets/css/styles.css" rel="stylesheet" media="all">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+
+            $("#leftArea").load("/ace_admin/leftArea.html");
+            $("#topArea").load("/ace_admin/topArea.html");
+
+        });
+    </script>
+
+</head>
+<body>
+<article>
+    <section id="leftArea"></section>
+    <section id="panel">
+        <div id="topArea"></div>
+        <div class="mainArea">
+            <div class="summary">
+                <button type="button">배팅유저<span>0</span></button>
+                <button type="button">배팅금액<span>0</span></button>
+                <button type="button">당첨금액<span>0</span></button>
+                <button type="button">총입금<span>0 (0)</span></button>
+                <button type="button">총출금<span>0 (0)</span></button>
+                <button type="button">손익<span>0</span></button>
+                <button type="button">알보유금액<span>-6,614,260</span></button>
+                <button type="button">보유머니<span>0</span></button>
+                <button type="button">보유포인트<span>0</span></button>
+                <button type="button">롤링정산금<span>0</span></button>
+                <button type="button">SMS<span>0 (0건)</span></button>
+            </div>
+            <h4 class="title">게임별 상세통계</h4>
+            <div class="block">
+                <div class="table_top mb10">
+                    <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker" />
+                    <button type="button" class="btn blue ml5">검색</button>
+                </div>
+                <ul class="nav nav-pills bot-line" id="game-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="sports-tab" data-bs-toggle="pill" data-bs-target="#sports" type="button" role="tab" aria-controls="sports" aria-selected="true">스포츠</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="casino-tab" data-bs-toggle="pill" data-bs-target="#casino" type="button" role="tab" aria-controls="casino" aria-selected="false">카지노</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="slot-tab" data-bs-toggle="pill" data-bs-target="#slot" type="button" role="tab" aria-controls="slot" aria-selected="false">슬롯</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="mini-tab" data-bs-toggle="pill" data-bs-target="#mini" type="button" role="tab" aria-controls="mini" aria-selected="false">미니게임</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="game-tabContent">
+                    <div class="tab-pane fade show active" id="sports" role="tabpanel" aria-labelledby="sports-tab">
+                        <table class="list_table">
+                            <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>배팅유저</th>
+                                <th>배팅금액</th>
+                                <th>당첨금액</th>
+                                <th>롤링지급액</th>
+                                <th>손익</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2022-09-23</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <!--
+							<tr>
+								<td class="none" colspan="6">
+									내용이 없습니다.
+								</td>
+							</tr>
+							-->
+                            </tbody>
+                        </table>
+                        <ul class="pagination mt10">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="casino" role="tabpanel" aria-labelledby="casino-tab">
+                        <table class="list_table">
+                            <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>배팅유저</th>
+                                <th>배팅금액</th>
+                                <th>당첨금액</th>
+                                <th>롤링지급액</th>
+                                <th>손익</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2022-09-23</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <!--
+							<tr>
+								<td class="none" colspan="6">
+									내용이 없습니다.
+								</td>
+							</tr>
+							-->
+                            </tbody>
+                        </table>
+                        <ul class="pagination mt10">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="slot" role="tabpanel" aria-labelledby="slot-tab">
+                        <table class="list_table">
+                            <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>배팅유저</th>
+                                <th>배팅금액</th>
+                                <th>당첨금액</th>
+                                <th>롤링지급액</th>
+                                <th>손익</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2022-09-23</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <!--
+							<tr>
+								<td class="none" colspan="6">
+									내용이 없습니다.
+								</td>
+							</tr>
+							-->
+                            </tbody>
+                        </table>
+                        <ul class="pagination mt10">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="mini" role="tabpanel" aria-labelledby="mini-tab">
+                        <table class="list_table">
+                            <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>배팅유저</th>
+                                <th>배팅금액</th>
+                                <th>당첨금액</th>
+                                <th>롤링지급액</th>
+                                <th>손익</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2022-09-23</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <!--
+							<tr>
+								<td class="none" colspan="6">
+									내용이 없습니다.
+								</td>
+							</tr>
+							-->
+                            </tbody>
+                        </table>
+                        <ul class="pagination mt10">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<!-- boardEditModal -->
+<div class="modal fade boardEditModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">게시글 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <colgroup>
+                        <col style="width: 15%"/>
+                        <col style="width: 35%"/>
+                        <col style="width: 15%"/>
+                        <col style="width: 35%"/>
+                    </colgroup>
+                    <tr>
+                        <th>상태</th>
+                        <td>
+                            <select name="usable">
+                                <option value="1">사용</option>
+                                <option value="2">미사용</option>
+                            </select>
+                        </td>
+                        <th>조회수</th>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="10">
+                                <span class="input-group-text">회</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td>
+                            <input type="text" class="form-control" placeholder="작성자 입력" value="관리자">
+                        </td>
+                        <th>등록일</th>
+                        <td>
+                            <input type="text" name="table-datepicker" id="registDate" class="datepicker" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>썸네일</th>
+                        <td colspan="3" class="t_left">
+                            <input type="file" class="attach_input" id="attach_thumb">
+                            <label for="attach_thumb" class="attach_thumb">
+                                <img src="../assets/images/upload.svg" alt="" />썸네일 업로드
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td class="3">
+                            <input type="text" class="form-control" placeholder="제목 입력" value="제목제목제목">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td colspan="3">
+                            <textarea type="text" placeholder="편집기 영역"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn blue">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../assets/js/styles.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
