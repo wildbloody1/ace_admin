@@ -865,11 +865,26 @@ figure.dropdown-toggle::after {
 	margin-left: 10px;
 }
 #topArea .toplist li a {
+	position: relative;
 	line-height: 30px;
 	color: #ddd;
-	padding: 0 15px;
+	padding: 0 20px;
 	border: 1px solid #555;
 	border-radius: 5px;
+}
+#topArea .toplist li a .badge {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	display: block;
+	line-height: 18px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #fff;
+	content: "25";
+	padding: 0 5px;
+	border-radius: 8px;
+	background: #ec3d47;
 }
 #topArea .toplist li:hover a {
 	border-color: #aaa;
