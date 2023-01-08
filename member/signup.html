@@ -62,7 +62,11 @@
                         <option value="1">가입일</option>
                         <option value="2">최근 로그인 시간</option>
                     </select>
-                    <input type="text" name="table-datepicker" id="table-datepicker" class="datepicker ml5" />
+                    <div class="input_wrap">
+                        <input type="text" name="dateStart" id="dateStart" class="datepicker single ml5" />
+                        <span>~</span>
+                        <input type="text" name="dateEnd" id="dateEnd" class="datepicker single" />
+                    </div>
                     <select name="search" class="ml5">
                         <option value="0">검색기준</option>
                         <option value="1">아이디</option>

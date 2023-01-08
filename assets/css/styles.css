@@ -630,6 +630,9 @@ table tr td.none {
 	text-align: center;
 	cursor: pointer;
 }
+.datepicker.single {
+	width: 120px;
+}
 .daterangepicker {
 	font-family: 'pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', Pretendard, Roboto, 'Noto Sans KR', 'Segoe UI', 'Malgun Gothic', sans-serif;
 	border-color: #2C2D31;
@@ -684,6 +687,24 @@ table tr td.none {
 }
 .daterangepicker .drp-buttons {
 	border-color: #2C2D31;
+}
+
+.daterangepicker.single .drp-calendar.left {
+	padding: 10px;
+}
+.daterangepicker select.monthselect,
+.daterangepicker select.yearselect {
+	font-size: 14px;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	background: #2C2D31;
+}
+.daterangepicker select.monthselect {
+	width: 40%;
+}
+.daterangepicker select.yearselect {
+	width: 56%;
 }
 
 /* dropdown */

@@ -139,6 +139,46 @@ $(function () {
 		maxYear: parseInt(moment().format('YYYY'),10)
 	});
 });
+$(function () {
+	$('#dateStart').daterangepicker({
+		"locale": {
+			"format": "YYYY-MM-DD",
+			"applyLabel": "확인",
+			"cancelLabel": "취소",
+			"fromLabel": "From",
+			"toLabel": "To",
+			"customRangeLabel": "Custom",
+			"weekLabel": "W",
+			"daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+			"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			"firstDay": 1
+		},
+		singleDatePicker: true,
+		showDropdowns: true,
+		minYear: 1901,
+		maxYear: parseInt(moment().format('YYYY'),10)
+	});
+});
+$(function () {
+	$('#dateEnd').daterangepicker({
+		"locale": {
+			"format": "YYYY-MM-DD",
+			"applyLabel": "확인",
+			"cancelLabel": "취소",
+			"fromLabel": "From",
+			"toLabel": "To",
+			"customRangeLabel": "Custom",
+			"weekLabel": "W",
+			"daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+			"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			"firstDay": 1
+		},
+		singleDatePicker: true,
+		showDropdowns: true,
+		minYear: 1901,
+		maxYear: parseInt(moment().format('YYYY'),10)
+	});
+});
 
 //google chart
 google.charts.load('current', {'packages':['corechart']});
