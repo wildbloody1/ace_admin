@@ -17,6 +17,11 @@
     <li>
         <a href="#">접속<span class="badge">234</span></a>
     </li>
+
+    <li>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Loading">Loading</button>
+    </li>
+
 </ul>
 <div class="user_profile">
     <figure>
@@ -61,4 +66,17 @@
             <a href="#">로그아웃</a>
         </li>
     </ul>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Loading" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="LoadingLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading</span>
+            </div>
+        </div>
+    </div>
 </div>
